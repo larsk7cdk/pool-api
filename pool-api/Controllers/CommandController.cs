@@ -21,7 +21,7 @@ namespace pool_api.Controllers
         public async Task<IActionResult> Pump([FromQuery] string pumpRun)
         {
             _logger.LogInformation($"Pump run value: {pumpRun}");
-            return Ok($"{pumpRun}{Environment.NewLine}");
+            return Ok($"Pump status is: {pumpRun}{Environment.NewLine}");
         }
     }
 }
