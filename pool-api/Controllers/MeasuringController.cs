@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using pool_api.DomainServices;
-using System.Threading.Tasks;
+using pool_api.Models;
 
 namespace pool_api.Controllers
 {
@@ -8,15 +9,19 @@ namespace pool_api.Controllers
     [ApiController]
     public class MeasuringController : ControllerBase
     {
-        [HttpGet]
+        //[HttpGet]
+        //[Route("update")]
+        //public async Task<IActionResult> Update(
+        //    [FromServices] IMeasureService measureService,
+        //    [FromQuery] string temp,
+        //    [FromQuery] string ph,
+        //    [FromQuery] string timestamp) => await measureService.Create(temp, ph, timestamp);
+
+        [HttpPost]
         [Route("update")]
         public async Task<IActionResult> Update(
-            [FromServices] IMeasuringService measuringService,
-            [FromQuery] string temp,
-            [FromQuery] string ph) =>
-             await measuringService.Log(temp, ph);
-
-
+            [FromServices] IMeasureService measureService,
+            [FromBody] MeasureRequest[] measurings) => await measureService.Create(measurings);
 
         //_logger.LogInformation($"Measure value temp is: {temp} and ph is: {ph}");
         //return Ok($"Measuring OK {Environment.NewLine}");

@@ -5,7 +5,7 @@ namespace pool_api.AppData
 {
     public class AppDataDbContext : DbContext
     {
-        public DbSet<Measuring> Measurings { get; set; }
+        public DbSet<Measure> Measurings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

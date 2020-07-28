@@ -14,7 +14,7 @@ namespace pool_api.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Temperature = table.Column<decimal>(nullable: false),
                     Ph = table.Column<decimal>(nullable: false),
-                    LogDateTime = table.Column<DateTime>(nullable: false)
+                    Timestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

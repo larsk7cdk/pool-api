@@ -9,7 +9,7 @@ using pool_api.AppData;
 namespace pool_api.Migrations
 {
     [DbContext(typeof(AppDataDbContext))]
-    [Migration("20200721101040_initialcreate")]
+    [Migration("20200728192943_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,19 +18,19 @@ namespace pool_api.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6");
 
-            modelBuilder.Entity("pool_api.DomainModels.Measuring", b =>
+            modelBuilder.Entity("pool_api.DomainModels.Measure", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LogDateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Ph")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Temperature")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Timestamp")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

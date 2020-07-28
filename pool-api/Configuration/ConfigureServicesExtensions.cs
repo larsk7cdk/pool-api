@@ -26,10 +26,10 @@ namespace pool_api.Configuration
         private static void ConfigureDependencies(IServiceCollection services)
         {
             // Domain Services
-            services.AddTransient<IMeasuringService, MeasuringService>();
+            services.AddTransient<IMeasureService, MeasureService>();
 
             // Repositories
-            services.AddTransient<IRepository<Measuring>, Repository<Measuring>>();
+            services.AddTransient<IRepository<Measure>, Repository<Measure>>();
         }
 
         private static void ConfigureFacades(IServiceCollection services)

@@ -22,7 +22,7 @@ namespace pool_api
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://192.168.68.123:5000");
+                    // webBuilder.UseUrls("http://192.168.68.123:5000");
                     webBuilder.UseStartup<Startup>();
                 });
         }
