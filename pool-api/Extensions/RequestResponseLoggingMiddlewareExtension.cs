@@ -1,5 +1,5 @@
-﻿using bbob_bff.Middlewares;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using pool_api.Middlewares;
 
 namespace pool_api.Extensions
 {

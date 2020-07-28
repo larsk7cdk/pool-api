@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.IO;
 
-namespace bbob_bff.Middlewares
+namespace pool_api.Middlewares
 {
     public class RequestResponseLoggingMiddleware
     {

@@ -20,7 +20,11 @@ namespace pool_api
         {
             return Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseUrls("http://192.168.68.123:5000");
+                    webBuilder.UseStartup<Startup>();
+                });
         }
     }
 }

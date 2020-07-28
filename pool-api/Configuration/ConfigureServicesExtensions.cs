@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using pool_api.AppData;
+using pool_api.DomainModels;
+using pool_api.DomainServices;
 
 namespace pool_api.Configuration
 {
@@ -7,6 +10,7 @@ namespace pool_api.Configuration
     {
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
+            ConfigureDbContext(services);
             ConfigureDependencies(services);
             ConfigureFacades(services);
             ConfigureServices(services);
@@ -14,22 +18,18 @@ namespace pool_api.Configuration
             ConfigureFrameworks(services);
         }
 
+        private static void ConfigureDbContext(IServiceCollection services)
+        {
+            services.AddDbContext<AppDataDbContext>();
+        }
 
         private static void ConfigureDependencies(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200", "https://pool.klydevej7.dk");
-                        builder.WithMethods("GET", "POST", "OPTIONS");
-                        builder.AllowAnyHeader();
-                        builder.AllowCredentials();
-                    });
-            });
+            // Domain Services
+            services.AddTransient<IMeasuringService, MeasuringService>();
 
-            services.AddControllers();
+            // Repositories
+            services.AddTransient<IRepository<Measuring>, Repository<Measuring>>();
         }
 
         private static void ConfigureFacades(IServiceCollection services)
