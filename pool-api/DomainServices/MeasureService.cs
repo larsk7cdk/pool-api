@@ -17,19 +17,22 @@ namespace pool_api.DomainServices
             _measureRepository = measureRepository;
         }
 
-        public async Task<IActionResult> Create(string temperature, string pH, string timestamp)
+        public async Task<IActionResult> Create(MeasureRequest measuring)
         {
             return await Task.Run(async () =>
             {
-                var measure = new Measure
+                var e = Convert.ToUInt64(measuring.EpochTime);
+                var timestamp = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                    .AddSeconds(e)
+                    .DateTime;
+
+
+                await _measureRepository.CreateAsync(new Measure
                 {
-                    Temperature = Convert.ToDecimal(temperature.Replace('.', ',')),
-                    Ph = Convert.ToDecimal(pH.Replace('.', ',')),
-                    Timestamp = DateTime.Parse(timestamp)
-                };
+                    Temperature = measuring.Temperature,
+                    Timestamp = timestamp
+                });
 
-
-                await _measureRepository.CreateAsync(measure);
 
                 return new OkObjectResult("Measure create OK");
             });
@@ -44,10 +47,27 @@ namespace pool_api.DomainServices
                     await _measureRepository.CreateAsync(new Measure
                     {
                         Temperature = m.Temperature,
-                        Ph = m.Ph,
-                        Timestamp = DateTime.Parse(m.Timestamp)
+                        Timestamp = new DateTime()
                     });
 
+
+                return new OkObjectResult("Measure create OK");
+            });
+        }
+
+        public async Task<IActionResult> Create(string temperature, string pH, string timestamp)
+        {
+            return await Task.Run(async () =>
+            {
+                var measure = new Measure
+                {
+                    Temperature = Convert.ToDecimal(temperature.Replace('.', ',')),
+                    Ph = Convert.ToDecimal(pH.Replace('.', ',')),
+                    Timestamp = DateTime.Parse(timestamp)
+                };
+
+
+                await _measureRepository.CreateAsync(measure);
 
                 return new OkObjectResult("Measure create OK");
             });

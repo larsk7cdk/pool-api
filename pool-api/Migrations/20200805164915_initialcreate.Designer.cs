@@ -9,7 +9,7 @@ using pool_api.AppData;
 namespace pool_api.Migrations
 {
     [DbContext(typeof(AppDataDbContext))]
-    [Migration("20200728192943_initialcreate")]
+    [Migration("20200805164915_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

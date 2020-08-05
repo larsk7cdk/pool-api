@@ -6,7 +6,7 @@ namespace pool_api.DomainServices
 {
     public interface IMeasureService
     {
-        Task<IActionResult> Create(string temperature, string pH, string timestamp);
+        Task<IActionResult> Create(MeasureRequest measurings);
         Task<IActionResult> Create(MeasureRequest[] measurings);
     }
 }
