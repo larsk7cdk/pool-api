@@ -24,7 +24,7 @@ namespace pool_api.Configuration
 
             UseCors(app);
 
-            //app.UseRequestResponseLogging(); //Todo: We need to test UseRequestResponseLogging/RequestResponseLoggingMiddleware against UseSerilogRequestLogging
+            app.UseRequestResponseLogging(); //Todo: We need to test UseRequestResponseLogging/RequestResponseLoggingMiddleware against UseSerilogRequestLogging
 
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
